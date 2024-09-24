@@ -1,10 +1,15 @@
+using Microsoft.VisualBasic.FileIO;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp2
+namespace ListCity
 {
     class City
     {
@@ -23,7 +28,7 @@ namespace ConsoleApp2
 
     class Program
     {
-        void add(List<City> cities)
+        static void add(List<City> cities)
         {
             Console.Write("Enter city to add: ");
             string city_name = Console.ReadLine();
@@ -33,7 +38,7 @@ namespace ConsoleApp2
             cities.Add(new City(city_name, postal_code));
         }
 
-        void remove(List<City> cities)
+        static void remove(List<City> cities)
         {
             Console.Write("Enter city to remove: ");
             string city_name = Console.ReadLine();
@@ -45,7 +50,7 @@ namespace ConsoleApp2
             }
         }
 
-        void addPosition(List<City> cities)
+        static void addPosition(List<City> cities)
         {
             Console.Write("Enter position where to add: ");
             int position = int.Parse(Console.ReadLine());
@@ -55,14 +60,14 @@ namespace ConsoleApp2
             Console.Write("Enter postal code of the city: ");
             int postal_code = int.Parse(Console.ReadLine());
 
-            cities.Insert(position, new City(city_name, postal_code));
+            cities.Insert(position - 1, new City(city_name, postal_code));
         }
 
-        void print(List<City> cities)
+        static void print(List<City> cities)
         {
             for (int i = 0; i < cities.Count; i++)
             {
-                Console.WriteLine(cities[i]);
+                Console.WriteLine(cities[i].City_name + " " + cities[i].Postal_code);
             }
             Console.WriteLine();
         }
@@ -73,7 +78,7 @@ namespace ConsoleApp2
 
             bool stop = false;
 
-            while(stop == false)
+            while (stop == false)
             {
                 Console.WriteLine("1. Add city");
                 Console.WriteLine("2. Remove city");
@@ -84,9 +89,14 @@ namespace ConsoleApp2
                 Console.Write("Enter option: ");
                 int choice = int.Parse(Console.ReadLine());
 
-                switch(choice)
+                switch (choice)
                 {
-                    case 1: 
+                    case 1: add(cities); break;
+                    case 2: remove(cities); break;
+                    case 3: addPosition(cities); break;
+                    case 4: print(cities); break;
+                    case 5: stop = true; break;
+                    default: break;
                 }
 
             }

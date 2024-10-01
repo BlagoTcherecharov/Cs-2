@@ -67,7 +67,6 @@ namespace StackTemplate
             {
                 Console.WriteLine("1. Push");
                 Console.WriteLine("2. Pop");
-                Console.WriteLine("3.Finish");
                 choice = int.Parse(Console.ReadLine());
 
                 switch(choice)
@@ -83,7 +82,7 @@ namespace StackTemplate
                     default:
                         break;
                 }
-            } while (choice != 3);
+            } while (!stack.Empty());
         }
     }
 }

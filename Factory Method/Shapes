@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp12
+namespace ShapesFactoryMethod
 {
     abstract class Shapes
     {
@@ -27,23 +27,23 @@ namespace ConsoleApp12
 
     class Circle : Shapes
     {
-        public Circle(double side1, double side2): base(side1, side2)
+        public Circle(double side1, double side2) : base(side1, side2)
         {
-            string figureType = "Circle";
+            figureType = "Circle";
         }
 
         public override string FigureType { get { return figureType; } }
 
         public override void CalculateArea()
         {
-            double area = Math.PI * side1 * side1;
+            area = Math.PI * side1 * side1;
         }
 
         public override double Area { get { return area; } }
 
         public override void CalculatePerimeter()
         {
-            double perimeter = 2 * Math.PI * side1;
+            perimeter = 2 * Math.PI * side1;
         }
 
         public override double Perimeter { get { return perimeter; } }
@@ -53,21 +53,21 @@ namespace ConsoleApp12
     {
         public Rectangle(double side1, double side2) : base(side1, side2)
         {
-            string figureType = "Rectangle";
+            figureType = "Rectangle";
         }
 
         public override string FigureType { get { return figureType; } }
 
         public override void CalculateArea()
         {
-            double area = side1 * side2;
+            area = side1 * side2;
         }
 
         public override double Area { get { return area; } }
 
         public override void CalculatePerimeter()
         {
-            double perimeter = 2 * (side1 + side2);
+            perimeter = 2 * (side1 + side2);
         }
 
         public override double Perimeter { get { return perimeter; } }
@@ -77,21 +77,21 @@ namespace ConsoleApp12
     {
         public Square(double side1, double side2) : base(side1, side2)
         {
-            string figureType = "Square";
+            figureType = "Square";
         }
 
         public override string FigureType { get { return figureType; } }
 
         public override void CalculateArea()
         {
-            double area = side1 * side1;
+            area = side1 * side1;
         }
 
         public override double Area { get { return area; } }
 
         public override void CalculatePerimeter()
         {
-            double perimeter = 4 * side1;
+            perimeter = 4 * side1;
         }
 
         public override double Perimeter { get { return perimeter; } }
@@ -164,7 +164,7 @@ namespace ConsoleApp12
                 Console.Write("Enter shape: ");
                 string shape = Console.ReadLine();
 
-                switch(shape.ToLower())
+                switch (shape.ToLower())
                 {
                     case "circle":
                         Console.Write("Enter radius of circle: ");
@@ -184,6 +184,7 @@ namespace ConsoleApp12
                         shape_factory[i] = new SquareFactory(side1, side2);
                         break;
                     default:
+                        i--;
                         break;
                 }
             }
@@ -191,10 +192,12 @@ namespace ConsoleApp12
             for (int i = 0; i < shape_factory.Length; i++)
             {
                 shapes[i] = shape_factory[i].GetShapes();
+                shapes[i].CalculateArea();
+                shapes[i].CalculatePerimeter();
 
-                Console.WriteLine();
+                Console.WriteLine("\nShape is a {0}, has a perimeter of {1} and an area of {2}", shapes[i].FigureType, shapes[i].Perimeter, shapes[i].Area);
             }
-            
+
         }
     }
 }

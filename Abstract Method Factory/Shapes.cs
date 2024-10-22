@@ -233,8 +233,6 @@ namespace Shapes
             IShapesFactory factory2 = new RedFactory();
             Client client2 = new Client(factory2);
             client2.Run();
-
-            Console.ReadLine();
         }
     }
 }

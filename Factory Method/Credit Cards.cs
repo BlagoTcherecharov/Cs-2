@@ -136,8 +136,6 @@ namespace BankCards
             CreditCard creditCard = factory.GetCreditCard();
             Console.WriteLine("\nYour card details are below: \n");
             Console.WriteLine("Card type: {0} \nCredit limit: {1} \nAnnual charge: {2}", creditCard.CardType, creditCard.CreditLimit, creditCard.AnnualCharge);
-
-            Console.ReadLine();
         }
     }
 }

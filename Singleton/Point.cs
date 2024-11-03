@@ -28,7 +28,7 @@ namespace Points
             get { return y; }
         }
     }
-    
+
     sealed class Area
     {
         Point[] points;
@@ -37,21 +37,22 @@ namespace Points
 
         private static readonly Lazy<Area> lazy = new Lazy<Area>(() => new Area());
         public static Area GetInstance { get { return lazy.Value; } }
-        
+
         public void AreaPoints(int n)
         {
             this.n = n;
+            points = new Point[n];
 
             for (int i = 0; i < n; i++)
             {
-                points = new Point[n];
+                points[i] = new Point();
 
                 Console.WriteLine("Point of area");
                 points[i].Input();
             }
         }
 
-        public void Verification()
+        public void Verification(Point p)
         {
             xmin = xmax = points[0].X;
             ymin = ymax = points[0].Y;
@@ -62,11 +63,16 @@ namespace Points
                     xmin = points[i].X;
                 if (xmax < points[i].X)
                     xmax = points[i].X;
-                if (xmin > points[i].Y)
-                    xmin = points[i].X;
-                if (xmax < points[i].Y)
-                    xmax = points[i].X;
+                if (ymin > points[i].Y)
+                    ymin = points[i].Y;
+                if (ymax < points[i].Y)
+                    ymax = points[i].Y;
             }
+
+            if(p.X >= xmin && p.X <= xmax && p.Y >= ymin && p.Y <= ymax)
+                Console.WriteLine("Point " + p.X + ", " + p.Y + " is in the area!");
+            else
+                Console.WriteLine("Point " + p.X + ", " + p.Y + " is not in the area!");
 
         }
     }
@@ -85,6 +91,19 @@ namespace Points
             int num_points;
             Console.Write("Enter number of points: ");
             num_points = int.Parse(Console.ReadLine());
+
+            Point[] p = new Point[num_points];
+
+            for (int i = 0; i < num_points; i++)
+            {
+                p[i] = new Point();
+                p[i].Input();
+            }
+
+            foreach (var i in p)
+            {
+                area.Verification(i);
+            }
         }
     }
 }

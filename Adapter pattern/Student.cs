@@ -34,18 +34,17 @@ namespace School
         protected string grade;
 
         public abstract void Input();
-        public void Calculate(string s)
+        public void Calculate()
         {
-            score = s;
-            double sc = Convert.ToDouble(s);
+            double s = Convert.ToDouble(score);
 
-            if (13.5 <= sc && sc <= 17.5)
+            if (13.5 <= s && s <= 17.5)
                 grade = "3";
-            else if (18 <= sc && sc <= 22)
+            else if (18 <= s && s <= 22)
                 grade = "4";
-            else if (22.5 <= sc && sc <= 25)
+            else if (22.5 <= s && s <= 25)
                 grade = "5";
-            else if (25.5 <= sc)
+            else if (25.5 <= s)
                 grade = "6";
             else
                 grade = "2";
@@ -85,7 +84,7 @@ namespace School
             email = group.GetItem("email");
             score = group.GetItem("score");
 
-            Calculate(score);
+            Calculate();
         }
     }
 

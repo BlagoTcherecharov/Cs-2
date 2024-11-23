@@ -83,16 +83,18 @@ namespace Facade
 
             for (int i = 0; i < numAuthors; i++)
             {
-                authors[i].addLecturer();
+                Paper newPaper = new Paper();
+                newPaper.addLecturer();
+                authors.Add(newPaper);
             }
 
-            Console.WriteLine("Enter title of paper: ");
+            Console.Write("Enter title of paper: ");
             title = Console.ReadLine();
-            Console.WriteLine("Enter ISSN: ");
+            Console.Write("Enter ISSN: ");
             ISSN = Console.ReadLine();
-            Console.WriteLine("Enter details of paper: ");
+            Console.Write("Enter details of paper: ");
             details = Console.ReadLine();
-            Console.WriteLine("Enter type of paper: ");
+            Console.Write("Enter type of paper: ");
             type = Console.ReadLine();
         }
 
